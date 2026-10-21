@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<meta name="description" content="午夜来信 MIDNIGHT ORACLE · 塔罗与答案之书" />
+<meta name="color-scheme" content="dark" />
+<meta name="theme-color" content="#060912" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='%230A0D1B'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23C7A96B' stroke-width='1.5'/%3E%3Cpath d='M18.5 11a6.2 6.2 0 1 0 0 10 4.8 4.8 0 1 1 0-10Z' fill='%23C7A96B'/%3E%3C/svg%3E" />
+<title>午夜来信 MIDNIGHT ORACLE</title>
+<link rel="stylesheet" href="./assets/style.css" />
+</head>
+<body>
+
+<div class="ambient" aria-hidden="true">
+  <span class="ambient-glow"></span>
+  <span class="ambient-stars" id="ambient-stars"></span>
+</div>
+
+<main class="app" id="app" aria-label="午夜来信塔罗占卜工具">
+
+  <!-- ==================== 首页 ==================== -->
+  <section class="screen screen-home" id="screen-home" data-screen="home">
+    <div class="home-inner">
+      <div class="brand">
+        <span class="brand-sigil" id="brand-sigil" aria-hidden="true"></span>
+        <span class="brand-text">
+          <span class="brand-name">MIDNIGHT ORACLE</span>
+          <span class="brand-sub">午夜来信</span>
+        </span>
+        <span class="brand-edition">VOL. I<br />00:00</span>
+      </div>
+
+      <div class="home-copy">
+        <p class="eyebrow">A PRIVATE READING FOR THE NIGHT</p>
+        <h1 class="home-title">有些问题，<br />值得静下来<br />听听自己的答案。</h1>
+        <p class="home-lede">
+          洗一次牌，让它停在属于今晚的那一页。<br />
+          牌面给你意象，一句话替你开口，剩下的由你自己补完。
+        </p>
+
+        <button class="btn btn-primary home-cta" id="btn-start" type="button">
+          <span class="cta-index">01</span>
+          <span class="cta-label">开启今晚的占卜</span>
+          <span class="cta-mark" aria-hidden="true"></span>
+        </button>
+
+        <p class="disclaimer">
+          塔罗是一种自我投射与思考工具。本页不预测未来，也不构成医疗、法律或投资建议。
+        </p>
+      </div>
+
+      <div class="home-hero" id="home-hero" aria-hidden="true">
+        <span class="hero-orbit hero-orbit-a"></span>
+        <span class="hero-orbit hero-orbit-b"></span>
+        <span class="hero-axis"></span>
+        <span class="hero-caption">THE PAGE<br />FOR<br />TONIGHT</span>
+        <span class="hero-coordinate">31°14'N<br />121°28'E</span>
+      </div>
+
+      <div class="home-footer" aria-hidden="true">
+        <span>NOCTURNAL ARCHIVE</span>
+        <span>I / III</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 静心 ==================== -->
+  <section class="screen screen-ritual" id="screen-ritual" data-screen="ritual" hidden>
+    <button class="icon-btn icon-back ritual-back" id="btn-ritual-back" type="button" aria-label="返回上一步"></button>
+
+    <div class="ritual-inner">
+      <p class="eyebrow">A MOMENT FOR YOURSELF</p>
+
+      <div class="ritual-breath" aria-hidden="true">
+        <span class="ritual-ring"></span>
+        <span class="ritual-core"></span>
+      </div>
+
+      <h2 class="ritual-title">闭上眼睛，<br />深呼吸三次。</h2>
+
+      <p class="ritual-copy">
+        然后在心里默念你想问的问题。<br />
+        不必写下来——写下来，它就变成了一件待办。
+      </p>
+
+      <button class="btn btn-primary btn-block" id="btn-ritual" type="button">我准备好了</button>
+
+      <p class="ritual-foot">全程离线 · 不提问 · 不留存你说过的任何话</p>
+    </div>
+  </section>
+
+  <!-- ==================== 洗牌与抽牌 ==================== -->
+  <section class="screen" id="screen-draw" data-screen="draw" hidden>
+    <header class="screen-head">
+      <button class="icon-btn icon-back" id="btn-back-draw" type="button" aria-label="返回上一步"></button>
+      <h2 class="screen-title">洗牌与抽牌</h2>
+      <span class="step-mark">02 / 03</span>
+    </header>
+
+    <div class="screen-body screen-body-draw">
+      <div class="draw-atmosphere" aria-hidden="true">
+        <span class="draw-veil draw-veil-a"></span>
+        <span class="draw-veil draw-veil-b"></span>
+        <span class="draw-starfield"></span>
+        <span class="draw-comet draw-comet-a"></span>
+        <span class="draw-comet draw-comet-b"></span>
+      </div>
+
+      <div class="draw-meta" aria-hidden="true">
+        <span>THE SHUFFLE</span>
+        <span class="draw-meta-gem"></span>
+        <span>FOCUS / BREATHE</span>
+      </div>
+
+      <div class="draw-copy">
+        <p class="stage-line" id="draw-stage" role="status" aria-live="polite">把问题交给牌组，听它重新排列。</p>
+        <span class="draw-copy-rule" aria-hidden="true"><i></i></span>
+      </div>
+
+      <div class="deck-stage" id="deck-stage">
+        <div class="deck" id="deck" role="group" aria-label="塔罗牌组"></div>
+      </div>
+
+      <div class="draw-controls">
+        <button class="btn btn-primary btn-block" id="btn-shuffle" type="button">洗牌</button>
+        <p class="stage-hint" id="draw-hint">抽出的牌在这次占卜中不会再改变。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 今晚这一页 ==================== -->
+  <section class="screen" id="screen-result" data-screen="result" hidden>
+    <header class="screen-head">
+      <button class="icon-btn icon-back" id="btn-back-result" type="button" aria-label="返回上一步"></button>
+      <h2 class="screen-title" id="screen-result-title">今晚这一页</h2>
+      <span class="step-mark" id="screen-result-step">03 / 03</span>
+    </header>
+
+    <div class="screen-body" id="result-body">
+      <div class="book" id="book">
+        <div class="book-page" id="book-page">
+          <div class="book-page-head">
+            <span class="book-page-no" id="book-page-no">NO. 01 / 44</span>
+            <span class="book-page-mark">MIDNIGHT ORACLE · 答案之书</span>
+          </div>
+
+          <div class="book-card" id="book-card">
+            <div class="book-card-art" id="book-card-art" aria-hidden="true"></div>
+            <div class="book-card-meta">
+              <span class="book-card-name" id="book-card-name"></span>
+              <span class="book-card-orient" id="book-card-orient"></span>
+            </div>
+          </div>
+
+          <blockquote class="book-line" id="book-line" aria-live="polite"></blockquote>
+
+        </div>
+      </div>
+
+      <section class="card-meaning" id="card-meaning">
+        <h3 class="card-meaning-title">关于这张牌</h3>
+        <p class="card-meaning-text" id="card-meaning-text"></p>
+        <p class="card-meaning-symbol" id="card-meaning-symbol"></p>
+        <ul class="card-meaning-tags" id="card-meaning-tags"></ul>
+      </section>
+
+      <div class="result-actions" id="result-actions" hidden>
+        <button class="btn btn-primary btn-block" id="btn-save" type="button">保存这一页</button>
+        <button class="btn btn-ghost btn-block" id="btn-reflip" type="button">再翻一页</button>
+        <button class="btn btn-ghost btn-block" id="btn-again" type="button">再占卜一次</button>
+      </div>
+
+      <p class="disclaimer disclaimer-tight" id="result-disclaimer">
+        牌面与提示语来自本地牌库，仅供自我反思，不预测未来，也不替代专业意见。
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<!-- 分享卡预览层 -->
+<div class="sheet" id="share-sheet" role="dialog" aria-modal="true" aria-labelledby="share-sheet-title" hidden>
+  <div class="sheet-mask" id="share-sheet-mask"></div>
+  <div class="sheet-panel">
+    <div class="sheet-head">
+      <div class="sheet-heading">
+        <h3 class="sheet-title" id="share-sheet-title">今晚这一页</h3>
+        <span class="sheet-sub">A PAGE TO KEEP</span>
+      </div>
+      <button class="icon-btn" id="btn-close-share" type="button" aria-label="关闭"></button>
+    </div>
+    <div class="sheet-body">
+      <div class="share-preview" id="share-preview"></div>
+      <p class="share-status" id="share-status" role="status" aria-live="polite"></p>
+      <div class="share-actions" id="share-actions" hidden>
+        <button class="btn btn-primary btn-block" id="btn-save-album" type="button">保存到相册</button>
+        <button class="btn btn-ghost btn-block" id="btn-post-note" type="button">发布为笔记</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 全局声音开关：配乐 + 音效 -->
+<button class="float-sound" id="btn-sound" type="button" aria-pressed="false" aria-label="开启声音">
+  <span class="float-sound-glyph" aria-hidden="true">♪</span>
+</button>
+
+<script src="./assets/js/01-core.js"></script>
+<script src="./assets/js/02-cards-data.js"></script>
+<script src="./assets/js/02b-tarot-research.js"></script>
+<script src="./assets/js/03-cards-art.js"></script>
+<script src="./assets/js/03b-card-canvas-data.js"></script>
+<script src="./assets/js/08b-oracle-lines.js"></script>
+<script src="./assets/js/08-oracle-book.js"></script>
+<script src="./assets/js/05-audio.js"></script>
+<script src="./assets/js/05b-ambience.js"></script>
+<script src="./assets/js/06-views.js"></script>
+<script src="./assets/js/07-share.js"></script>
+</body>
+</html>

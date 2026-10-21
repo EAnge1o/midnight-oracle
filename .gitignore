@@ -1,0 +1,29 @@
+# 音乐文件（体积大，不纳入仓库；本地按 app/assets/audio/music.mp3 放置即可）
+*.mp3
+*.wav
+*.flac
+*.aac
+*.ogg
+*.m4a
+*.wma
+music.mp3
+app/assets/audio/music.mp3
+
+# 构建产物 / 缓存
+dist/
+output/
+.asset-cache/
+screenshots/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# 系统 / 编辑器
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.log

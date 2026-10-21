@@ -1,0 +1,232 @@
+{
+  "deck": "Rider-Waite-Smith",
+  "deckId": "rider-waite-smith",
+  "sourceRepository": "https://github.com/mixvlad/TarotCards",
+  "sourceDeck": "https://github.com/mixvlad/TarotCards/tree/main/tarot/rider-waite",
+  "originalSource": "https://steve-p.org/cards/RWSa.html",
+  "imageLicense": "Public Domain",
+  "imageFormat": "JPEG 288x480（页面）/ 220x367（分享卡副本）",
+  "cards": [
+    {
+      "id": "fool",
+      "num": 0,
+      "roman": "0",
+      "nameCN": "愚人",
+      "nameEN": "The Fool",
+      "image": "assets/tarot/rider-waite/360px/00_Fool.jpg",
+      "sha256": "3fe9517eab1aa7bb925404fc9e3332e812f242633a87b80d7dacb6bb83ff64aa",
+      "source": "mixvlad/TarotCards tarot/rider-waite/720px（本地重编码 288x480）"
+    },
+    {
+      "id": "magician",
+      "num": 1,
+      "roman": "I",
+      "nameCN": "魔术师",
+      "nameEN": "The Magician",
+      "image": "assets/tarot/rider-waite/360px/01_Magician.jpg",
+      "sha256": "f7b7a478c1e309bac24f5eb4f36552192052c6f39910ae3bfc0557dfcf3a4eff",
+      "source": "mixvlad/TarotCards tarot/rider-waite/720px（本地重编码 288x480）"
+    },
+    {
+      "id": "priestess",
+      "num": 2,
+      "roman": "II",
+      "nameCN": "女祭司",
+      "nameEN": "The High Priestess",
+      "image": "assets/tarot/rider-waite/360px/02_High_Priestess.jpg",
+      "sha256": "986b1af720a16be8c22af13cd03a90f6e666c23f3648c9cf7088ca48e139ae41",
+      "source": "mixvlad/TarotCards tarot/rider-waite/720px（本地重编码 288x480）"
+    },
+    {
+      "id": "empress",
+      "num": 3,
+      "roman": "III",
+      "nameCN": "皇后",
+      "nameEN": "The Empress",
+      "image": "assets/tarot/rider-waite/360px/03_Empress.jpg",
+      "sha256": "fb535f38541e3a13911e7bc82af711d838b7a1796cf8d13a79805e4010b07db7",
+      "source": "mixvlad/TarotCards tarot/rider-waite/720px（本地重编码 288x480）"
+    },
+    {
+      "id": "emperor",
+      "num": 4,
+      "roman": "IV",
+      "nameCN": "皇帝",
+      "nameEN": "The Emperor",
+      "image": "assets/tarot/rider-waite/360px/04_Emperor.jpg",
+      "sha256": "194f96fddcd820a3780eeb114525bf0ba7d955b8d55e42030f60d75adf964cd3",
+      "source": "mixvlad/TarotCards tarot/rider-waite/720px（本地重编码 288x480）"
+    },
+    {
+      "id": "hierophant",
+      "num": 5,
+      "roman": "V",
+      "nameCN": "教皇",
+      "nameEN": "The Hierophant",
+      "image": "assets/tarot/rider-waite/360px/05_Hierophant.jpg",
+      "sha256": "24ea44a5504c2a543052495dabfa14f697f16ca1b7e24ccf725ed9873f9d15ef",
+      "source": "mixvlad/TarotCards tarot/rider-waite/720px（本地重编码 288x480）"
+    },
+    {
+      "id": "lovers",
+      "num": 6,
+      "roman": "VI",
+      "nameCN": "恋人",
+      "nameEN": "The Lovers",
+      "image": "assets/tarot/rider-waite/360px/06_Lovers.jpg",
+      "sha256": "3a3d9a3d835356842511b281d2c04e17a49b99a555a283c95528461813d12415",
+      "source": "mixvlad/TarotCards tarot/rider-waite/720px（本地重编码 288x480）"
+    },
+    {
+      "id": "chariot",
+      "num": 7,
+      "roman": "VII",
+      "nameCN": "战车",
+      "nameEN": "The Chariot",
+      "image": "assets/tarot/rider-waite/360px/07_Chariot.jpg",
+      "sha256": "57f86000882a9f0d6f2b1980ea3edee0d593ee88aa5a7f15573a7a9739e20a82",
+      "source": "mixvlad/TarotCards tarot/rider-waite/720px（本地重编码 288x480）"
+    },
+    {
+      "id": "strength",
+      "num": 8,
+      "roman": "VIII",
+      "nameCN": "力量",
+      "nameEN": "Strength",
+      "image": "assets/tarot/rider-waite/360px/08_Strength.jpg",
+      "sha256": "4a12e1864d4aa39abd5258c187e7aa5af3cc4963196ccc8d0136c2703741d073",
+      "source": "mixvlad/TarotCards tarot/rider-waite/720px（本地重编码 288x480）"
+    },
+    {
+      "id": "hermit",
+      "num": 9,
+      "roman": "IX",
+      "nameCN": "隐士",
+      "nameEN": "The Hermit",
+      "image": "assets/tarot/rider-waite/360px/09_Hermit.jpg",
+      "sha256": "60d168d0c058e7055f9387624205a066fb9fb611b211c0058149ec3bf5c2a8fd",
+      "source": "mixvlad/TarotCards tarot/rider-waite/720px（本地重编码 288x480）"
+    },
+    {
+      "id": "wheel",
+      "num": 10,
+      "roman": "X",
+      "nameCN": "命运之轮",
+      "nameEN": "Wheel of Fortune",
+      "image": "assets/tarot/rider-waite/360px/10_Wheel_of_Fortune.jpg",
+      "sha256": "ce58e5e481b167aa2c95d565ce325e40d38254146353d420f7e440047947b282",
+      "source": "mixvlad/TarotCards tarot/rider-waite/720px（本地重编码 288x480）"
+    },
+    {
+      "id": "justice",
+      "num": 11,
+      "roman": "XI",
+      "nameCN": "正义",
+      "nameEN": "Justice",
+      "image": "assets/tarot/rider-waite/360px/11_Justice.jpg",
+      "sha256": "a4c22a389f7fd4e48c52be9cc8948f8442b4ea53304f6f351bd362dd529de5c3",
+      "source": "mixvlad/TarotCards tarot/rider-waite/720px（本地重编码 288x480）"
+    },
+    {
+      "id": "hangedman",
+      "num": 12,
+      "roman": "XII",
+      "nameCN": "倒吊人",
+      "nameEN": "The Hanged Man",
+      "image": "assets/tarot/rider-waite/360px/12_Hanged_Man.jpg",
+      "sha256": "98a55c8d4ad933db05b6df7b3b1690b24849611d4b0eadf0a74c4a7b43fa44ea",
+      "source": "mixvlad/TarotCards tarot/rider-waite/720px（本地重编码 288x480）"
+    },
+    {
+      "id": "death",
+      "num": 13,
+      "roman": "XIII",
+      "nameCN": "死神",
+      "nameEN": "Death",
+      "image": "assets/tarot/rider-waite/360px/13_Death.jpg",
+      "sha256": "14707d9eb74ac5610eb11bba82bfd0d953758ee6d534a125ea6bd7d934f85a37",
+      "source": "mixvlad/TarotCards tarot/rider-waite/720px（本地重编码 288x480）"
+    },
+    {
+      "id": "temperance",
+      "num": 14,
+      "roman": "XIV",
+      "nameCN": "节制",
+      "nameEN": "Temperance",
+      "image": "assets/tarot/rider-waite/360px/14_Temperance.jpg",
+      "sha256": "ec1a68beba38a88e0689bc20ef9a6346d855f3b4e02f8f98a3ed7b7dca550fb6",
+      "source": "mixvlad/TarotCards tarot/rider-waite/720px（本地重编码 288x480）"
+    },
+    {
+      "id": "devil",
+      "num": 15,
+      "roman": "XV",
+      "nameCN": "恶魔",
+      "nameEN": "The Devil",
+      "image": "assets/tarot/rider-waite/360px/15_Devil.jpg",
+      "sha256": "5b7cdc3143bd9f5aac3dbbc653655e234cd80c89afcb5dc6ae0f777dda291b23",
+      "source": "mixvlad/TarotCards tarot/rider-waite/720px（本地重编码 288x480）"
+    },
+    {
+      "id": "tower",
+      "num": 16,
+      "roman": "XVI",
+      "nameCN": "高塔",
+      "nameEN": "The Tower",
+      "image": "assets/tarot/rider-waite/360px/16_Tower.jpg",
+      "sha256": "0bf8094726fe861b951a72b39b5e4bc18981c2408fbf9acca1e553be3d4430eb",
+      "source": "mixvlad/TarotCards tarot/rider-waite/720px（本地重编码 288x480）"
+    },
+    {
+      "id": "star",
+      "num": 17,
+      "roman": "XVII",
+      "nameCN": "星星",
+      "nameEN": "The Star",
+      "image": "assets/tarot/rider-waite/360px/17_Star.jpg",
+      "sha256": "31fa577fb7ec7a261601f6332338a9e80fdc579abb85f7d5faf2cfa6f7d3ea29",
+      "source": "mixvlad/TarotCards tarot/rider-waite/720px（本地重编码 288x480）"
+    },
+    {
+      "id": "moon",
+      "num": 18,
+      "roman": "XVIII",
+      "nameCN": "月亮",
+      "nameEN": "The Moon",
+      "image": "assets/tarot/rider-waite/360px/18_Moon.jpg",
+      "sha256": "c287aebee8b7928046b9115f20b387cb71ceedb276abd327e248d6e722c914b0",
+      "source": "mixvlad/TarotCards tarot/rider-waite/720px（本地重编码 288x480）"
+    },
+    {
+      "id": "sun",
+      "num": 19,
+      "roman": "XIX",
+      "nameCN": "太阳",
+      "nameEN": "The Sun",
+      "image": "assets/tarot/rider-waite/360px/19_Sun.jpg",
+      "sha256": "b13854dc4ce36be1328ea4f11adb8a9b7a5a5f9cf31c3e723bf9d5f71049ca54",
+      "source": "mixvlad/TarotCards tarot/rider-waite/720px（本地重编码 288x480）"
+    },
+    {
+      "id": "judgement",
+      "num": 20,
+      "roman": "XX",
+      "nameCN": "审判",
+      "nameEN": "Judgement",
+      "image": "assets/tarot/rider-waite/360px/20_Judgement.jpg",
+      "sha256": "5c1f0c4aae7e9098232fe06d114b4be34dc2b836c7de173defb710750e2b8160",
+      "source": "mixvlad/TarotCards tarot/rider-waite/720px（本地重编码 288x480）"
+    },
+    {
+      "id": "world",
+      "num": 21,
+      "roman": "XXI",
+      "nameCN": "世界",
+      "nameEN": "The World",
+      "image": "assets/tarot/rider-waite/360px/21_World.jpg",
+      "sha256": "68c6891726cbbeee2fcf2271a0c1ac6bb128008c870f265ba8b95a40566af1c0",
+      "source": "mixvlad/TarotCards tarot/rider-waite/720px（本地重编码 288x480）"
+    }
+  ],
+  "optimizedFrom": "mixvlad/TarotCards 720x1200 原图本地重编码"
+}

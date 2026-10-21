@@ -1,0 +1,18 @@
+{
+  "NotoSerifSC": {
+    "file": "NotoSerifSC.woff2",
+    "name": "Noto Serif SC / 思源宋体",
+    "version": "variable 2.003 (subset)",
+    "license": "SIL Open Font License 1.1",
+    "source": "https://github.com/google/fonts/tree/main/ofl/notoserifsc",
+    "usage": "中文正文、标题、牌名"
+  },
+  "Cinzel": {
+    "file": "Cinzel.woff2",
+    "name": "Cinzel",
+    "version": "variable (subset)",
+    "license": "SIL Open Font License 1.1",
+    "source": "https://github.com/google/fonts/tree/main/ofl/cinzel",
+    "usage": "英文眉题、字标与页码"
+  }
+}
