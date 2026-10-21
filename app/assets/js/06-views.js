@@ -1389,30 +1389,45 @@
       if (MO.audio) MO.audio.unlock();
     }, true);
 
-    /* 配乐加载失败（例如包里没有放 music.mp3）：把按钮状态改回去 */
+    /* 全局声音开关：配乐 + 音效（配乐默认自动开启，按钮随时可关） */
+    function syncSoundButton(on) {
+      var node = el['btn-sound'];
+      if (!node) return;
+      node.setAttribute('aria-pressed', on ? 'true' : 'false');
+      node.setAttribute('aria-label', on ? '关闭声音' : '开启声音');
+      node.classList.toggle('is-on', !!on);
+    }
+
+    if (MO.ambience && typeof MO.ambience.setStateHandler === 'function') {
+      /* 配乐真正开始播放时，音效一并解除静音，按钮状态同步 */
+      MO.ambience.setStateHandler(function (on) {
+        syncSoundButton(on);
+        if (MO.audio) MO.audio.setMuted(!on);
+      });
+    }
+
     if (MO.ambience && typeof MO.ambience.setFailHandler === 'function') {
+      /* 配乐加载失败（例如包里没有放 music.mp3）：把按钮状态改回去 */
       MO.ambience.setFailHandler(function () {
-        el['btn-sound'].setAttribute('aria-pressed', 'false');
-        el['btn-sound'].setAttribute('aria-label', '开启声音');
-        el['btn-sound'].classList.remove('is-on');
+        syncSoundButton(false);
         if (MO.audio) MO.audio.setMuted(true);
       });
     }
 
-    /* 全局声音开关：配乐 + 音效 */
     on(el['btn-sound'], 'click', function () {
       if (!MO.audio) return;
-      var enable = MO.audio.isMuted();   // 当前静音 → 这次开启
-      MO.audio.setMuted(!enable);
-      if (enable) {
-        MO.audio.unlock();
-        if (MO.ambience) MO.ambience.start();
-      } else if (MO.ambience) {
-        MO.ambience.stop();
+      var enable = !MO.ambience.isEnabled();
+      if (MO.audio) MO.audio.setMuted(!enable);
+      if (MO.ambience) {
+        MO.ambience.setUserMuted(!enable);
+        if (enable) {
+          MO.audio.unlock();
+          MO.ambience.start();
+        } else {
+          MO.ambience.stop();
+        }
       }
-      el['btn-sound'].setAttribute('aria-pressed', enable ? 'true' : 'false');
-      el['btn-sound'].setAttribute('aria-label', enable ? '关闭声音' : '开启声音');
-      el['btn-sound'].classList.toggle('is-on', enable);
+      syncSoundButton(enable);
     });
 
     on(el['btn-back-result'], 'click', function () { goHome(); });
@@ -1474,6 +1489,10 @@
     buildAmbient();
     buildDrawAtmosphere();
     bindEvents();
+    /* 配乐自动开启：浏览器若拦截无手势播放，会在用户第一次交互时自动开始 */
+    if (MO.ambience && typeof MO.ambience.autoStart === 'function') {
+      MO.ambience.autoStart();
+    }
     bindPointerDepth();
     applyScreen(STATES.HOME);
     machine.go(STATES.HOME);
