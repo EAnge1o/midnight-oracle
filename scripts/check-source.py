@@ -105,6 +105,8 @@ def main():
         print("  manifest: %d 张牌" % len(manifest.get("cards", [])))
 
     print("== 4. 禁用能力复核 ==")
+    # 按 device-capabilities.md 的扫描清单：联网、定位、剪贴板、
+    # 后台运行（Worker）、音频抓取等在容器里都不可用
     banned = {
         "eval(": "eval",
         "new Function(": "new Function",
@@ -113,6 +115,14 @@ def main():
         "XMLHttpRequest": "XHR",
         "importScripts(": "importScripts",
         "WebSocket": "WebSocket",
+        "navigator.geolocation": "定位",
+        "navigator.clipboard": "剪贴板",
+        "new Worker(": "Worker",
+        "new SharedWorker(": "SharedWorker",
+        "navigator.serviceWorker": "Service Worker",
+        "getUserMedia": "音频抓取",
+        "navigator.vibrate": "震动",
+        "RTCPeerConnection": "WebRTC",
     }
     hits = 0
     for name in files:
@@ -130,6 +140,49 @@ def main():
         errors.append("index.html 里有行内事件属性")
         hits += 1
     print("  %s" % ("未发现禁用能力 OK" if hits == 0 else "发现 %d 处禁用能力 X" % hits))
+
+    print("== 5. HTML 结构 ==")
+    html_rules = [
+        ("DOCTYPE html", index_html.lstrip().lower().startswith("<!doctype html>")),
+        ('lang="zh-CN"', 'lang="zh-CN"' in index_html),
+        ("charset UTF-8", bool(re.search(r'charset=["\']?utf-8', index_html, re.I))),
+        ("viewport-fit=cover", "viewport-fit=cover" in index_html),
+        ("无 <base>", "<base" not in index_html.lower()),
+        ("无 <object>", "<object" not in index_html.lower()),
+        ("无 type=module", 'type="module"' not in index_html),
+        ("无自建 CSP meta", "http-equiv" not in index_html.lower()),
+        ("无 javascript: URL", "javascript:" not in index_html.lower()),
+    ]
+    for name, ok in html_rules:
+        if not ok:
+            errors.append("index.html: " + name)
+    print("  %d 项结构检查 %s" % (
+        len(html_rules),
+        "全部通过 OK" if all(ok for _, ok in html_rules) else "有不合规 X"))
+
+    print("== 6. JS 基线（ES2017 / Chrome 61）==")
+    modern = [
+        ("可选链 ?.", r"\?\.\s*[A-Za-z_$]"),
+        ("空值合并 ??", r"\?\?"),
+        ("对象扩散 ...", r"\.\.\.[A-Za-z_$]"),
+        ("无参数 catch", r"catch\s*\{"),
+        ("Array.flat", r"\.flat\("),
+        ("flatMap", r"\.flatMap\("),
+        ("trimStart/trimEnd", r"\.trim(Start|End)\("),
+        ("Object.hasOwn", r"Object\.hasOwn"),
+        ("globalThis", r"\bglobalThis\b"),
+        ("动态 import/export", r"^\s*(import|export)\s"),
+    ]
+    modern_hits = 0
+    for name in files:
+        if not name.endswith(".js"):
+            continue
+        text = read(os.path.join(APP, name))
+        for label, pattern in modern:
+            if re.search(pattern, text, re.M):
+                errors.append("%s 用了 ES2018+ 语法（%s）" % (name, label))
+                modern_hits += 1
+    print("  %s" % ("未发现 ES2018+ 语法 OK" if modern_hits == 0 else "发现 %d 处 X" % modern_hits))
 
     print("")
     if errors:

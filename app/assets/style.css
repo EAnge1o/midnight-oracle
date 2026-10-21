@@ -1,5 +1,5 @@
 /* =========================================================
-   午夜来信 MIDNIGHT ORACLE
+   镜映心 MIRROR OF THE HEART
    基线：Chrome 61 / WebView 61（Android 8.1 出厂内核）
    规则：不使用 flex gap（margin 为基线 + JS 行为检测增强）、
         不使用 aspect-ratio / clamp() / 逻辑属性 / :has() / 动态视口单位。
@@ -638,7 +638,7 @@ html.motion-reduced .deck-card,
 html.motion-reduced .deck-card-inner { transition-duration: 0.18s !important; }
 
 /* =========================================================
-   V2 · Nocturnal Archive
+   V2 · Mirror Archive
    以星历、装订线、档案编号与信笺栅格重构视觉层级。
    ========================================================= */
 
@@ -2635,7 +2635,7 @@ html.motion-reduced .book.is-opening .book-page { animation: none; }
   font-family: var(--latin);
 }
 
-/* 今晚这一页：整页与页眉「MIDNIGHT ORACLE · 答案之书」同一套字体 */
+/* 今晚这一页：整页与页眉「MIRROR OF THE HEART · 答案之书」同一套字体 */
 #screen-result .screen-title,
 #screen-result .book-card-name,
 #screen-result .book-line,

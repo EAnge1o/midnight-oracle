@@ -48,7 +48,7 @@ def main():
     label_font = ImageFont.truetype(FONT_TTF, 16)
     num_font = ImageFont.truetype(FONT_TTF, 14)
 
-    draw.text((PAD, 30), "MIDNIGHT ORACLE / ASSET ARCHIVE", font=small_font, fill=GOLD)
+    draw.text((PAD, 30), "MIRROR OF THE HEART / ASSET ARCHIVE", font=small_font, fill=GOLD)
     draw.text((PAD, 58), "RIDER-WAITE-SMITH · MAJOR ARCANA", font=title_font, fill=IVORY)
     draw.text((W - PAD - 200, 34), "22 CARDS", font=small_font, fill=MUTED)
     draw.text((W - PAD - 240, 62), "288 × 480 · PUBLIC DOMAIN", font=small_font, fill=MUTED)

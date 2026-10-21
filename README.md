@@ -1,4 +1,4 @@
-# 午夜来信 MIDNIGHT ORACLE
+# 镜映心 MIRROR OF THE HEART
 
 > 有些问题，值得静下来听听自己的答案。
 
@@ -11,7 +11,7 @@
 
 | 文件 | 说明 |
 | --- | --- |
-| `dist/midnight-oracle-1.0.0.zip` | 可直接上传小红书小工具上传页的产物包（34 个条目，7.62 MiB） |
+| `dist/mirror-of-the-heart-1.0.0.zip` | 可直接上传小红书小工具上传页的产物包（34 个条目，7.62 MiB） |
 | `app/index.html` | 小工具入口，位于 ZIP 根目录 |
 | `app/assets/style.css` | 完整视觉体系、书页与 Chrome 61 回退 |
 | `app/assets/js/01-core.js` | 环境探测、状态机、存储与动效分档 |
@@ -67,7 +67,7 @@ python scripts/check-source.py
 
 ### 小红书小工具
 
-1. 上传 `dist/midnight-oracle-1.0.0.zip`。
+1. 上传 `dist/mirror-of-the-heart-1.0.0.zip`。
 2. 在创服平台模拟器完成流程验证。
 3. 在 Android 与 iOS 真机验证保存、发布和触控体验。
 
@@ -169,7 +169,7 @@ home → ritual → shuffling → card_reveal → result
 
 - 字体栈统一为 `--latin`：`"Cinzel", "Noto Serif SC", "Trajan Pro", Georgia, serif`
   —— 拉丁字符走 Cinzel，中文走思源宋体。**「今晚这一页」整页与页眉
-  「MIDNIGHT ORACLE · 答案之书」使用同一套字体**。
+  「MIRROR OF THE HEART · 答案之书」使用同一套字体**。
 - 全部**子集化**为 WOFF2：只保留应用真正用到的字（1059 字 / 拉丁 99 字符），
   由 `scripts/build-fonts.py` 可复现生成。
 - 授权信息随包分发：`app/assets/fonts/licenses.json`。
@@ -208,7 +208,7 @@ home → ritual → shuffling → card_reveal → result
 | 洗牌沙沙 | 白噪声缓冲 + 带通滤波，响度与音高随拖动速度实时调制 |
 | 牌落桌 | 短噪声爆音 + 低频正弦闷响，逐张落下时触发 |
 | 翻牌 | 高频噪声扫频，模拟牌面摩擦 |
-| 揭示铃音 | 三个衰减正弦叠加，呼应「午夜来信」的古典调性 |
+| 揭示铃音 | 三个衰减正弦叠加，呼应「镜映心」的古典调性 |
 
 - 首次用户手势时才创建 AudioContext（符合移动端自动播放策略）。
 - 右上角提供静音开关，状态写入 `aria-pressed`。

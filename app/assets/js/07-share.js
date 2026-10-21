@@ -238,11 +238,11 @@
 
     ctx.fillStyle = GOLD;
     ctx.font = fontOf(400, 25, LATIN);
-    letterSpacedText(ctx, 'MIDNIGHT ORACLE', 150, 106, 6, 'left');
+    letterSpacedText(ctx, 'MIRROR OF THE HEART', 150, 106, 6, 'left');
 
     ctx.fillStyle = 'rgba(240,232,216,0.58)';
     ctx.font = fontOf(400, 16, SERIF);
-    letterSpacedText(ctx, '午 夜 来 信 · 答 案 之 书', 150, 134, 2.4, 'left');
+    letterSpacedText(ctx, '镜 映 心 · 答 案 之 书', 150, 134, 2.4, 'left');
 
     ctx.fillStyle = 'rgba(200,171,112,0.72)';
     ctx.font = fontOf(400, 15, LATIN);
@@ -421,7 +421,7 @@
 
         while (preview.firstChild) preview.removeChild(preview.firstChild);
         var img = document.createElement('img');
-        img.setAttribute('alt', '午夜来信 · 今晚这一页分享卡');
+        img.setAttribute('alt', '镜映心 · 今晚这一页分享卡');
         img.src = dataUrl;
         preview.appendChild(img);
 
@@ -517,12 +517,12 @@
     var content = '「' + current.page.line + '」' +
       '\n\n' + current.card.nameCN + '（' + (current.orientation === 'upright' ? '正位' : '逆位') + '）· 第 ' +
       current.page.pageNo + ' 页' +
-      '\n\n—— 午夜来信 MIDNIGHT ORACLE';
+      '\n\n—— 镜映心 MIRROR OF THE HEART';
     /* 官方限制：标题 ≤20 字，正文 ≤1000 字 */
     setStatus('正在打开发布页……', false);
     toFile(current.dataUrl).then(function (filePath) {
       return miniTool.postNote({
-        title: '午夜来信 · 今日一牌',
+        title: '镜映心 · 今日一牌',
         content: content.slice(0, 1000),
         pageType: 'photo_publish',
         mediaInfo: { image_resources: [{ url: filePath }] }

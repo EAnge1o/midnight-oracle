@@ -8,7 +8,7 @@ import sys
 import zipfile
 
 APP_DIR = "app"
-OUT_FILE = os.path.join("dist", "midnight-oracle-1.0.0.zip")
+OUT_FILE = os.path.join("dist", "mirror-of-the-heart-1.0.0.zip")
 
 
 def main() -> int:
