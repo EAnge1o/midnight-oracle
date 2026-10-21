@@ -15,6 +15,7 @@
 
   var el = null;
   var enabled = false;
+  var failHandler = null;
 
   function ensureElement() {
     if (el) return el;
@@ -24,6 +25,11 @@
     el.setAttribute('preload', 'none');
     el.src = SRC;
     el.volume = VOLUME;
+    /* 音频取不到时（例如没把配乐放进包里），通知调用方把界面状态改回去 */
+    el.addEventListener('error', function () {
+      enabled = false;
+      if (failHandler) failHandler();
+    });
     return el;
   }
 
@@ -66,12 +72,18 @@
     return el;
   }
 
+  /* 配乐加载失败时的回调 */
+  function setFailHandler(fn) {
+    failHandler = fn;
+  }
+
   MO.ambience = {
     start: start,
     stop: stop,
     reveal: reveal,
     isEnabled: isEnabled,
-    element: element
+    element: element,
+    setFailHandler: setFailHandler
   };
 
 })(window, document);

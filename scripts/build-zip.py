@@ -46,6 +46,15 @@ def main() -> int:
     print("index.html at root: True")
     print("separators: OK (all forward slash)")
     print("zip size: %d bytes (%.2f MiB)" % (size, size / 1024 / 1024))
+
+    music = os.path.join(APP_DIR, "assets", "audio", "music.mp3")
+    if not os.path.isfile(music):
+        print("")
+        print("[注意] 包内没有配乐：app/assets/audio/music.mp3 不在版本库里，需要自己提供。")
+        print("       用项目根目录的 music.mp3 裁出前一分钟：")
+        print("         ffmpeg -y -i music.mp3 -t 60 -af 'afade=t=in:st=0:d=1.2,afade=t=out:st=58.4:d=1.6' \\")
+        print("           -c:a libmp3lame -b:a 64k -ar 48000 -ac 2 app/assets/audio/music.mp3")
+        print("       没有配乐时应用仍可正常运行，只是没有背景音乐。")
     return 0
 
 

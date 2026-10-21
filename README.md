@@ -25,7 +25,8 @@
 | `app/assets/js/06-views.js` | 页面状态、洗牌抽牌、书页渲染与翻页 |
 | `app/assets/js/07-share.js` | Canvas 分享卡、保存与发布 |
 | `app/assets/tarot/rider-waite/` | 22 张本地 Rider-Waite-Smith 牌面与 manifest |
-| `screenshots/` | 首页、此刻的状态、洗牌抽牌、今晚这一页、分享卡与牌面总览 |
+| `docs/showcase/` | 真实浏览器截图（首页 / 静心 / 抽牌 / 今晚这一页 / 分享卡 / 牌面总览） |
+| `screenshots/` | 本地截图（不入库）：首页、此刻的状态、洗牌抽牌、今晚这一页、分享卡与牌面总览 |
 | `scripts/build-zip.py` | 可复现打包脚本（条目名一律正斜杠） |
 | `scripts/optimize-assets.py` | 素材重编码脚本：按展示尺寸压到交付体积预算内 |
 | `scripts/build-fonts.py` | 字体子集化脚本：三款 OFL 字体 → WOFF2 |
@@ -39,6 +40,26 @@
 | `archive/04-reading-local.js` | 上一版「长文回信」解读引擎，已退出运行包但保留为内容资产 |
 
 ## 2. 运行方式
+
+### 从零构建（干净克隆后）
+
+```bash
+# 1) 配乐不入版本库，需自己提供：把 music.mp3 放进项目根目录后裁出前一分钟
+ffmpeg -y -i music.mp3 -t 60 -af "afade=t=in:st=0:d=1.2,afade=t=out:st=58.4:d=1.6" \
+  -c:a libmp3lame -b:a 64k -ar 48000 -ac 2 app/assets/audio/music.mp3
+
+# 2) 生成字体子集（需要 .asset-cache/fonts 下的原始字体）
+python scripts/build-fonts.py
+
+# 3) 打包
+python scripts/build-zip.py
+
+# 4) 自审
+node scripts/audit.js
+```
+
+> 配乐缺失时 `build-zip.py` 会给出提示；应用也能正常运行，只是没有背景音乐。
+> `dist/` 与 `screenshots/` 不入库，交付 zip 请以 GitHub Release 附件形式发布。
 
 ### 小红书小工具
 

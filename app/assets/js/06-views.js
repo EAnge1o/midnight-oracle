@@ -995,6 +995,7 @@
     var intensity = core.clampNumber(Math.max(amount, speed / 1.4) * 0.78 + 0.12, 0.12, 1);
     reshuffleInterleave(intensity);
     shuffling = true;
+    prepareDraw();          // 手势洗牌同样要预热牌面，否则抽牌时才下载
     prepareShuffleRun();
     setText(el['draw-stage'], '松手，让牌落下来。');
 
@@ -1387,6 +1388,16 @@
     on(document, 'pointerdown', function () {
       if (MO.audio) MO.audio.unlock();
     }, true);
+
+    /* 配乐加载失败（例如包里没有放 music.mp3）：把按钮状态改回去 */
+    if (MO.ambience && typeof MO.ambience.setFailHandler === 'function') {
+      MO.ambience.setFailHandler(function () {
+        el['btn-sound'].setAttribute('aria-pressed', 'false');
+        el['btn-sound'].setAttribute('aria-label', '开启声音');
+        el['btn-sound'].classList.remove('is-on');
+        if (MO.audio) MO.audio.setMuted(true);
+      });
+    }
 
     /* 全局声音开关：配乐 + 音效 */
     on(el['btn-sound'], 'click', function () {
