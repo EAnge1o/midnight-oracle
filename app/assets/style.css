@@ -2558,6 +2558,8 @@ html.motion-reduced .book.is-opening .book-page { animation: none; }
 .book-page-mark {
   opacity: 0.72;
   text-align: right;
+  white-space: nowrap;   /* 品牌名变长后不让页眉换行 */
+  letter-spacing: 0.12em;
 }
 
 .book-card {
