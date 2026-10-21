@@ -32,6 +32,7 @@
 | `scripts/build-fonts.py` | 字体子集化脚本：三款 OFL 字体 → WOFF2 |
 | `scripts/prune-css.py` | 样式清理脚本：删掉 HTML/JS 里已不再引用的规则 |
 | `scripts/audit.js` | 项目自审：内容完整性、禁用能力、DOM 结构 |
+| `scripts/check-source.py` | 源码终检：引用完整性（大小写敏感）、离线自足、关键内容、禁用能力复核 |
 | `ASSET_CREDITS.md` | 牌面、牌背与交互研究来源 |
 | `TAROT_RESEARCH_NOTES.md` | 牌义研究、现代转译与修订记录 |
 | `QA.md` | 浏览器验收记录 |
@@ -56,6 +57,9 @@ python scripts/build-zip.py
 
 # 4) 自审
 node scripts/audit.js
+
+# 5) 源码终检（大小写敏感的引用核对，适用于 Android / Linux 容器）
+python scripts/check-source.py
 ```
 
 > 配乐缺失时 `build-zip.py` 会给出提示；应用也能正常运行，只是没有背景音乐。

@@ -25,7 +25,7 @@
   var el = {};
   function cacheElements() {
     var ids = [
-      'ambient-stars', 'brand-sigil', 'home-hero', 'btn-start',
+      'ambient-stars', 'brand-sigil', 'home-hero', 'btn-start', 'app',
       'screen-home', 'screen-ritual', 'screen-draw', 'screen-result',
       'screen-result-title', 'screen-result-step',
       'btn-ritual', 'btn-ritual-back',
@@ -48,7 +48,8 @@
     usedLines: [],       // 本次占卜已出现过的句子，翻页时避免重复
     meaning: null,       // 牌面释义（分享卡用）
     pickedImg: null,     // 抽中时已加载的牌面元素（书页复用）
-    prepared: null       // 洗牌时预先定下并预热的牌
+    prepared: null,      // 洗牌时预先定下并预热的牌
+    preparedImg: null    // 预热时已下载好的牌面元素（抽牌时直接复用）
   };
 
   var renderToken = 0;
@@ -73,6 +74,7 @@
     session.meaning = null;
     session.pickedImg = null;
     session.prepared = null;
+    session.preparedImg = null;
     deckLocked = true;
   }
 
@@ -712,9 +714,20 @@
     if (!card) card = cards[core.randomInt(cards.length)];
     var orientation = prepared ? prepared.orientation : (core.randomInt(2) === 0 ? 'upright' : 'reversed');
     session.prepared = null;
+    /* 新一轮必须先丢掉上一轮的元素，
+       否则新抽到的牌会被上一轮的图取代（张冠李带）。 */
+    session.preparedImg = null;
     session.prepared = { cardId: card.id, orientation: orientation };
     if (MO.art && typeof MO.art.preloadCardImage === 'function') {
-      MO.art.preloadCardImage(card);
+      /* 洗牌期间把牌面下好，并保留那个元素：
+         抽牌时直接接管，不再发起第二次请求。 */
+      MO.art.preloadCardImage(card, 4000).then(function (img) {
+        if (session.prepared && session.prepared.cardId === card.id) {
+          session.preparedImg = img || null;
+        }
+      }, function () {
+        session.preparedImg = null;
+      });
     }
     return session.prepared;
   }
@@ -1094,8 +1107,16 @@
     if (!isFinite(index)) return;
 
     var cards = MO.cards.list;
-    var card = cards[core.randomInt(cards.length)];
-    var orientation = core.randomInt(2) === 0 ? 'upright' : 'reversed';
+    /* 必须用洗牌时预热好的那张牌：
+       预热与实抽若不是同一张，预热就白费了，
+       实抽的那张仍要在抽牌瞬刻下载，弱网下会翻出空框。 */
+    var prepared = session.prepared;
+    var card = prepared ? MO.cards.byId(prepared.cardId) : null;
+    if (!card) card = cards[core.randomInt(cards.length)];
+    var orientation = prepared
+      ? prepared.orientation
+      : (core.randomInt(2) === 0 ? 'upright' : 'reversed');
+    session.prepared = null;
 
     /* 抽定即冻结：后续渲染不改变这副牌 */
     session.draw = {
@@ -1116,9 +1137,17 @@
     /* 把前脸换成真正抽到的牌面（并记住这个元素，书页直接复用，不再二次加载） */
     var front = node.getElementsByClassName('deck-card-front')[0];
     if (front) {
-      session.pickedImg = MO.art.mountCardImage(front, card, {
-        reversed: orientation === 'reversed'
-      });
+      /* 优先接管洗牌时已下好的元素：零请求、零等待 */
+      if (session.preparedImg && typeof MO.art.adoptCardImage === 'function') {
+        session.pickedImg = MO.art.adoptCardImage(
+          front, card, { reversed: orientation === 'reversed' }, session.preparedImg
+        );
+      }
+      if (!session.pickedImg) {
+        session.pickedImg = MO.art.mountCardImage(front, card, {
+          reversed: orientation === 'reversed'
+        });
+      }
     }
 
     /* 揭示仪式：抽出 → 其余牌退开 → 移到画面中央放大 → 停顿 → 翻面 → 进书页 */

@@ -681,6 +681,31 @@
     return img;
   }
 
+  /* 复用已预热（甚至已解码）的牌面元素：
+     抽牌时直接接管那个 <img>，不再发起第二次请求。
+     弱网下这一步决定翻面时是否会翻出空框。 */
+  function adoptCardImage(host, card, options, img) {
+    if (!host || !card || !img) return null;
+    var opt = options || {};
+    var reversed = !!opt.reversed;
+    var base = 'tarot-art-image' + (reversed ? ' is-reversed' : '');
+    var ready = !!(img.complete && img.naturalWidth);
+    if (ready || (img.className && String(img.className).indexOf('is-loaded') !== -1)) {
+      img.className = base + ' is-loaded';
+    } else {
+      img.className = base;
+      /* 还没下完：下完后再淡入，不阻断翻面节奏 */
+      img.addEventListener('load', function () {
+        img.className = base + ' is-loaded';
+      });
+    }
+    img.alt = card.nameCN + (reversed ? '，逆位' : '，正位');
+    img.setAttribute('draggable', 'false');
+    while (host.firstChild) host.removeChild(host.firstChild);
+    host.appendChild(img);
+    return img;
+  }
+
   /* 预加载牌面：揭示动画开始前先确保图片就位，
      否则翻面时会看到空框，图片再突然淡入。 */
   function preloadCardImage(card, timeoutMs) {
@@ -721,6 +746,7 @@
     loadCardImage: loadCardImage,
     loadCardImageForExport: loadCardImageForExport,
     mountCardImage: mountCardImage,
+    adoptCardImage: adoptCardImage,
     preloadCardImage: preloadCardImage,
     CARD_ASPECT: 168 / 100,
     CARD_IMAGE_ASPECT: 5 / 3
